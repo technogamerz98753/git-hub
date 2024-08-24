@@ -39,7 +39,7 @@ label {
   }
 
   #header {
-    background: red;
+ 
     height: 80px;
     display: flex;
     align-items: center;
@@ -54,7 +54,7 @@ label {
   }
 
   #sidebar {
-    background: green;
+    
     width: 300px;
     padding: 20px;
     box-sizing: border-box;

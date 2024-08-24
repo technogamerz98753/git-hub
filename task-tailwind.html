@@ -3,47 +3,92 @@
         <title>First Class Html</title>
         <link rel='stylesheet' href='task.css' />
         <script src="https://cdn.tailwindcss.com"></script>                                         
-       <style>
-        tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-           
-          }
-        }
-      }
-    }
+        <script>
+            tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    clifford: '#da373d',
+                  }
+                }
+              }, 
 
-    'minsk': {
-  DEFAULT: '#353887',
-  50: '#A09CD8',
-  100: '#918DD2',
-  200: '#7370C7',
-  300: '#5352BB',
-  400: '#4142A4',
-  500: '#353887',
-  600: '#2F3478',
-  700: '#292F6A',
-  800: '#242A5B',
-  900: '#1E244C',
-  950: '#1B2145'
-},
-       </style>
+                'blue': {
+             DEFAULT: '#353887',
+             50: '#A09CD8',
+             100: '#918DD2',
+             200: '#7370C7',
+             300: '#5352BB',
+             400: '#4142A4',
+             500: '#353887',
+             600: '#2F3478',
+             700: '#292F6A',
+             800: '#242A5B',
+             900: '#1E244C',
+             950: '#1B2145'
+            },
              
+                'red': {
+             DEFAULT: '#CF2E39',
+            50: '#F2C3CC',
+            100: '#EEB2BD',
+            200: '#E7919E',
+            300: '#DF6F7D',
+            400: '#D84E5B',
+            500:'#CF2E39',
+            600: '#BA292F',
+            700: '#A52527',
+            800: '#902120',
+            900: '#7C1F1B',
+            950: '#711E19'
+            },
+
+              'blue': {
+           DEFAULT: '#051956',
+          50: '#217FF2',
+          100: '#0E6FF0',
+          200: '#0C54CA',
+          300: '#093DA3',
+          400: '#07297D',
+          500: '#051956',
+          600: '#051556',
+          700: '#051256',
+          800: '#050E56',
+          900: '#050A56',
+          950: '#050956'
+          },
+
+             'orange': {
+         DEFAULT: '#FE8C45',
+         50: '#FFF2E5',
+         100: '#FFE8D3',
+         200: '#FFD4B0',
+         300: '#FEBE8C',
+         400: '#FEA669',
+         500: '#FE8C45',
+         600: '#FE772C',
+         700: '#FE6112',
+         800: '#F54D01',
+         900: '#DC3F01',
+         950: '#CF3901'
+        },
+            }
+          </script>
+
        
     </head>
  
     <body>    
-        <div id='header' class='slideDown'>
-          <h1  class="text-300 text-bright-turquoise">Header</h1>
+        <div id='header' class='slideDown p-4 bg-orange-400 text-white'>
+          <h1 class=" text-3x1 ">Header</h1>
         </div>
-        <div id='container'>
-          <div id='sidebar'>
+        <div id='container' class='flex'>
+          <div id='sidebar' class='w-1/4 p-5 bg-orange-300 text-white'>
             <h1>Sidebar</h1>
           </div>
-          <div id='mainBox' style='display: flex; width: 100%; gap:10px'>
+          <div id='mainBox' class='flex-1 flex gap-10p-6 bg-orange-100'>
             <div class='grid-item slideDown' style='width: 30%;'>
-                <form id='taskForm' onsubmit='event.preventDefault();' style='display: flex; flex-direction:column; gap: 4px; '>
+                <form id='taskForm' onsubmit='event.preventDefault();' style='display: flex; flex-direction:column; gap: 4px;'>
                   <label>Checkout Form</label>
                   <input type='text' name='first_name' required id='first_name' placeholder="Enter you first_name"/>
                   <span style='color:red;' hidden id='taskErrorField-first_name'>This field is required</span>
@@ -80,11 +125,11 @@
                         Online Payment
                     </label>
                   </div>
-                  <button type='button' onclick="sumbitCheckout()" id='submitBtn' class='submitBtn' style='background-color: blue; color: white; padding: 10px; border: none; border-radius: 5px;'>Checkout</button>
+                  <button type='button' onclick="sumbitCheckout()" id='submitBtn' class='submitBtn' style='background-color: rgba(255, 132, 0, 0.735); color: white; padding: 10px; border: none; border-radius: 5px;'>Checkout</button>
                 </form>
                 <div>
                   <label>Cart Details</label>
-                  <div id="boxList"  style="width: 80%; display: flex; flex-direction: column; gap: 4px;" class="grid-item slideDown">
+                  <div id="boxList"  style="width: 80%; display: flex; flex-direction: column; gap: 4px;" class='grid-item slideDown p-6 bg-orange-100'>
  
                   </div>
                 </div>
@@ -448,8 +493,8 @@ console.log(result); // 10
         const itemTotal = showTotalAmount(x.discounted_price < x.price ? x.discounted_price : x.price, x.quantity);
         totalAmount += itemTotal;
 
-        cartHtml += `<div class="box" style="background-color: aqua;">
-            <div style="padding-left:10px; border-radius: 50%; padding-right: 10px; display:flex; justify-content: space-between; align-items: center;">
+        cartHtml += `<div class="box" style="background-color:;">
+            <div style="padding-left:10px; border-radius: 50%; display:flex; justify-content: space-between; align-items: center;"  class='p-4 bg-orange-200'>
                 <p>`+ x.name +`</p>
                 `+ priceBox +`
                 <div>
@@ -487,11 +532,11 @@ console.log(result); // 10
                     </div>` ;
  
  
-                productHtml += `<div class='grid-item slideDown'>
+                productHtml += `<div class='grid-item slideDown bg-orange-200'>
                     <h1>`+ x.name +`</h1>
                     <p>`+ x.description +`</p>
                     `+ priceBox +`
-                    <div class='addToCartBox'>
+                    <div class='addToCartBox p-4 bg-orange-100'>
                         <input type='number' id='qty`+ x.id +`'/>
                         <button onclick='addToCart(`+x.id+`)'>Add to Cart</button>
  
@@ -520,5 +565,6 @@ console.log(result); // 10
         checkoutForm.cart_details.splice(proIndex, 1);
         renderCarts();
     }
+    
     </script>
 </html>
