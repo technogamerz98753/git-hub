@@ -57,20 +57,36 @@
              900: '#050A56',
              950: '#050956'
              },
+             
+             
+             'orange': {
+         DEFAULT: '#FE8C45',
+         50: '#FFF2E5',
+         100: '#FFE8D3',
+         200: '#FFD4B0',
+         300: '#FEBE8C',
+         400: '#FEA669',
+         500: '#FE8C45',
+         600: '#FE772C',
+         700: '#FE6112',
+         800: '#F54D01',
+         900: '#DC3F01',
+         950: '#CF3901'
+        },
             }
           </script>
        
     </head>
  
     <body>    
-        <div id='header' class='slideDown p-6 bg-cyan-400 text-white text-large'>
+        <div id='header' class='slideDown p-4 bg-orange-400 text-white text-large'>
           <h1 class='text-500 '>Header</h1>
         </div>
         <div id='container' class='flex'>
-          <div id='sidebar' class='w-1/4 p-5 bg-cyan-300 text-white'>
+          <div id='sidebar' class='w-1/4 p-5 bg-orange-300 text-white'>
             <h1>Sidebar</h1>
           </div>
-          <div id='mainBox' class='flex-1 flex gap-10 p-6 bg-cyan-200'>
+          <div id='mainBox' class='flex-1 flex gap-10p-6 bg-cyan-200'>
             <div class='grid-item slideDown' style='width: 30%;'>
                 <form id='taskForm' onsubmit='event.preventDefault();' style='display: flex; flex-direction:column; gap: 4px; '>
                   <label>Checkout Form</label>

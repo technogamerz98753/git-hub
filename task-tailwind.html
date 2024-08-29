@@ -1,8 +1,10 @@
 <html>
     <head>
         <title>First Class Html</title>
+        <meta charset='UTF-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' href='task.css' />
-        <script src="https://cdn.tailwindcss.com"></script>                                         
+        <script src="https://cdn.tailwindcss.com"></script>                                        
         <script>
             tailwind.config = {
               theme: {
@@ -77,6 +79,7 @@
 
        
     </head>
+    
  
     <body>    
         <div id='header' class='slideDown p-4 bg-orange-400 text-white'>
@@ -84,10 +87,10 @@
         </div>
         <div id='container' class='flex'>
           <div id='sidebar' class='w-1/4 p-5 bg-orange-300 text-white'>
-            <h1>Sidebar</h1>
+            <h1 class="text-x 5">Sidebar</h1>
           </div>
-          <div id='mainBox' class='flex-1 flex gap-10p-6 bg-orange-100'>
-            <div class='grid-item slideDown' style='width: 30%;'>
+          <div id='mainBox' class='flex-1 flex gap-10 p-6 bg-orange-100'>
+            <div class='grid-item slideDown  bg-orange-200' style='width: 30%;'>
                 <form id='taskForm' onsubmit='event.preventDefault();' style='display: flex; flex-direction:column; gap: 4px;'>
                   <label>Checkout Form</label>
                   <input type='text' name='first_name' required id='first_name' placeholder="Enter you first_name"/>
@@ -115,7 +118,7 @@
                     <option selected>Pakistan</option>
                   </select>
                   <span style='color:red;' hidden id='taskErrorField-country'>This field is required</span>
-                  <div>
+                  <div class='Checkout Form' >
                       <label class="paymentLabel">
                           <input type='radio' name='task' required id='payment_method' checked placeholder="Enter you payment_method"/>
                           Cash on Delivery
@@ -413,11 +416,12 @@
                     ...currentProduct,
                     quantity: currentQty,
                 }
- 
+                 
                 checkoutForm.cart_details.push(cartItem);
             }
             document.getElementById('qty'+product).value = '';
             renderCarts();
+
         }
  
         /**
@@ -458,7 +462,7 @@ console.log(result); // 10
  
  
                 cartHtml += `<div class="box" style="background-color: aqua;">
-                    <div style="padding-left:10px; border-radius: 50%; padding-right: 10px; display:flex; justify-content: space-between; align-items: center;">
+                    <div style="padding-left:10px; border-radius: 50%; display:flex; justify-content: space-between; align-items: center;">
                         <p>`+ x.name +`</p>
                         `+ priceBox +`
                         <div>
@@ -494,7 +498,7 @@ console.log(result); // 10
         totalAmount += itemTotal;
 
         cartHtml += `<div class="box" style="background-color:;">
-            <div style="padding-left:10px; border-radius: 50%; display:flex; justify-content: space-between; align-items: center;"  class='p-4 bg-orange-200'>
+            <div style="padding-left:10px; border-radius: 50%; display:flex; justify-content: space-between; align-items: center;" class='p-6 bg-orange-200'>
                 <p>`+ x.name +`</p>
                 `+ priceBox +`
                 <div>
@@ -532,11 +536,11 @@ console.log(result); // 10
                     </div>` ;
  
  
-                productHtml += `<div class='grid-item slideDown bg-orange-200'>
+                productHtml += `<div class='grid-item slideDown bg-orange-300'>
                     <h1>`+ x.name +`</h1>
                     <p>`+ x.description +`</p>
                     `+ priceBox +`
-                    <div class='addToCartBox p-4 bg-orange-100'>
+                    <div class='addToCartBox p-4 bg-orange-200'>
                         <input type='number' id='qty`+ x.id +`'/>
                         <button onclick='addToCart(`+x.id+`)'>Add to Cart</button>
  
