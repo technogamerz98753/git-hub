@@ -32,7 +32,7 @@ label {
     color: chartreuse;
     font-weight: 900;
     margin: 0;
-    background-color: darkslategrey;
+   
     display: flex;
     flex-direction: column;
     height: 100vh;
