@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <link rel="icon" href="C:\Users\Kma\Desktop\Bilal\16x16-information-icon-png-transparent-1.png">
+    <link rel="icon" href="16x16-information-icon-png-transparent-1.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.1">
     <title>First Class Html</title>
     <link rel='stylesheet' href='task.css' />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src='cheack.js'></script>
     <script>
         tailwind.config = {
             theme: {
@@ -63,10 +64,23 @@
 </head>
 <body>
     <div id='header' class='slideDown bg-orange-400 text-white'>
-        <h1 class='text-xl'>Header</h1>
+        <h1 class='text-xl '>Stock Managemeant</h1>
+                         
+          
+        <div class='addToCartBox p-4 bg-orange-200 text-black' >
+            <input text='a to z' id='qty`+ x.id +`'/>
+            <button onclick='addToCart(`+x.id+`)'>Add to Cart</button>
+    </div>
+        </div>
+        <div class='grid-item bg-orange-200'>
+            
+        </div>
+
+        </div>
+
     </div>
     <div id='container' class='flex'>
-            <div id='main'></div>
+           
         </div>
     </div>
     <script>
@@ -113,6 +127,7 @@
          total_amount: '',
          cart_details: [],
      }
+     
 
      var products = [
          {
@@ -134,7 +149,7 @@
              id: 3,
              name: 'watch',
              description: '',
-             image:'shan-chicken-masala-recipe-masala-50gm',
+             image:'',
              price: 9000,
              discounted_price: 7999,
          },
@@ -153,6 +168,8 @@
              discounted_price: 4700,
          },
      ];
+
+     
 
      renderProducts();
 
