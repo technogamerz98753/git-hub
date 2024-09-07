@@ -1,4 +1,13 @@
 
+table, th, td {
+border: 1px solid black;
+}
+p.round2 {
+border: 2px solid red;
+border-radius: 8px;
+padding: 5px;
+}
+
 
 .discount-price {
   text-decoration: line-through;
@@ -21,6 +30,7 @@ accent-color: rgb(0, 98, 255); /* This sets the color of the radio button */
 .paymentLabel input[type="radio"] {
 margin-right: 10px; /* Add some space between the radio button and the label */
 }
+
 
 label {
     font-size: 20px;
