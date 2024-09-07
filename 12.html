@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='task.css' />
     <title>Stock Management</title>
        <style>
@@ -16,12 +14,65 @@ p.round2 {
 }
 
 </style>
-
-       
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    clifford: '#da373d',
+                    blue: {
+                        DEFAULT: '#051956',
+                        50: '#217FF2',
+                        100: '#0E6FF0',
+                        200: '#0C54CA',
+                        300: '#093DA3',
+                        400: '#07297D',
+                        500: '#051956',
+                        600: '#051556',
+                        700: '#051256',
+                        800: '#050E56',
+                        900: '#050A56',
+                        950: '#050956'
+                    },
+                    red: {
+                        DEFAULT: '#CF2E39',
+                        50: '#F2C3CC',
+                        100: '#EEB2BD',
+                        200: '#E7919E',
+                        300: '#DF6F7D',
+                        400: '#D84E5B',
+                        500: '#CF2E39',
+                        600: '#BA292F',
+                        700: '#A52527',
+                        800: '#902120',
+                        900: '#7C1F1B',
+                        950: '#711E19'
+                    },
+                    orange: {
+                        DEFAULT: '#FE8C45',
+                        50: '#FFF2E5',
+                        100: '#FFE8D3',
+                        200: '#FFD4B0',
+                        300: '#FEBE8C',
+                        400: '#FEA669',
+                        500: '#FE8C45',
+                        600: '#FE772C',
+                        700: '#FE6112',
+                        800: '#F54D01',
+                        900: '#DC3F01',
+                        950: '#CF3901'
+                    }
+                }
+            }
+        }
+    }
+</script>
 </head>
 <body>
-    <h1>Rashan Stock Management</h1>
-    <span style="margin: 15px;"></span>
+     <div id='header' class='slideDown bg-orange-400 text-white'>
+     <h1>Rashan Stock Management</h1>
+     <span style="margin: 15px;"></span>
+     </div>
 
     <form id="stock-form">
        
