@@ -63,21 +63,18 @@
     </script>
 </head>
 <body>
-    <div id='header' class='slideDown bg-orange-400 text-white'>
-        <h1 class='text-xl '>Stock Managemeant</h1>
-                         
-          
-        <div class='addToCartBox p-4 bg-orange-200 text-black' >
-            <input text='a to z' id='qty`+ x.id +`'/>
-            <button onclick='addToCart(`+x.id+`)'>Add to Cart</button>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="display: inline;">Stock management</h1>
+        <span style="margin-right: 10px;">
+            <label style="font-size: x-large;">Add Product:</label>
+            <input id="addProductInput" type="text" onkeydown="checkEnter(event);">
+            <button onclick="addProduct();" id="addProductButton">Add</button>
+        </span>
     </div>
         </div>
-        <div class='grid-item bg-orange-200'>
+        <div class='grid-item bg-orange-200' style='width: 30%;'>
             
         </div>
-
-        </div>
-
     </div>
     <div id='container' class='flex'>
            

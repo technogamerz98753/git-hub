@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='task.css' />
+    <title>Stock Management</title>
+       <style>
+       table, th, td {
+  border: 1px solid black;
+}
+p.round2 {
+  border: 2px solid red;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+</style>
+
+       
+</head>
+<body>
+    <h1>Rashan Stock Management</h1>
+    <span style="margin: 15px;"></span>
+
+    <form id="stock-form">
+       
+        <label for="item">Item:</label>
+        <input type="text" id="item" required>
+        <label for="quantity">Quantity:</label>
+        <input text="number" id="quantity" required>
+        <button type="submit">Add Item</button>
+    </form>
+    <table id="stock-table">
+        <span style="margin: 10px;"></span>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const form = document.getElementById('stock-form');
+        const tableBody = document.querySelector('#stock-table tbody');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const item = document.getElementById('item').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+
+            if (item && quantity > 0) {
+                addItemToTable(item, quantity);
+                form.reset();
+            }
+           
+        });
+
+        function addItemToTable(item, quantity) {
+            const row = document.createElement('tr');
+
+            const itemCell = document.createElement('td');
+            itemCell.textContent = item;
+            row.appendChild(itemCell);
+
+            const quantityCell = document.createElement('td');
+            quantityCell.textContent = quantity;
+            row.appendChild(quantityCell);
+
+            const actionCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'close' ;
+            deleteButton.addEventListener('click', function() {
+                row.remove();
+            });
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
+
+            tableBody.appendChild(row);
+        }
+
+       
+
+
+    </script>
+
+</body>
+</html>

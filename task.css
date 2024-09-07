@@ -5,7 +5,7 @@
   color: red
 }
 .actual-price {
-  color: green;
+  color:black;
 }
 
 .paymentLabel {
@@ -31,10 +31,10 @@ label {
   }
 
   body {
-    color: chartreuse;
+    color:black;
     font-weight: 900;
     margin: 0;
-   
+   background-color:whitesmoke;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -50,6 +50,7 @@ label {
   }
 
   #container {
+
     display: flex;
     position: relative;
     flex: 1;
@@ -61,8 +62,10 @@ label {
     padding: 20px;
     box-sizing: border-box;
   }
+      
 
   #main {
+ 
     flex: 1;
     padding: 20px;
     box-sizing: border-box;
@@ -72,7 +75,7 @@ label {
   }
 
   .grid-item {
-    background: #fff;
+    background:orangered ;
     color: #000;
     padding: 20px;
     border-radius: 5;
