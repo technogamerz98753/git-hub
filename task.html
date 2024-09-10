@@ -95,6 +95,22 @@ p.round2 {
     </table>
 
     <script>
+        debugger;
+        const { createApp } = vue
+
+        createApp ({
+            data() {
+                return {
+                    message: 'hello Vue!'
+                }
+            },
+            beforeCreate() {
+                debugger;
+                aleart('we here when')
+            }
+        }
+
+        )
         const form = document.getElementById('stock-form');
         const tableBody = document.querySelector('#stock-table tbody');
 
