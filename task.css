@@ -1,23 +1,9 @@
-h1 {
-  text-shadow: 1px 1px 3px red ;
-}
-
-table, th, td {
-border: 1px solid black;
-}
-p.round2 {
-border: 2px solid red;
-border-radius: 8px;
-padding: 5px;
-}
-
-
 .discount-price {
   text-decoration: line-through;
   color: red
 }
 .actual-price {
-  color:black;
+  color: green;
 }
 
 .paymentLabel {
@@ -34,7 +20,6 @@ accent-color: rgb(0, 98, 255); /* This sets the color of the radio button */
 margin-right: 10px; /* Add some space between the radio button and the label */
 }
 
-
 label {
     font-size: 20px;
   }
@@ -44,10 +29,10 @@ label {
   }
 
   body {
-    color:black;
+    color: chartreuse;
     font-weight: 900;
     margin: 0;
-   background-color:whitesmoke;
+    background-color: darkslategrey;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -63,7 +48,6 @@ label {
   }
 
   #container {
-
     display: flex;
     position: relative;
     flex: 1;
@@ -75,10 +59,8 @@ label {
     padding: 20px;
     box-sizing: border-box;
   }
-      
 
   #main {
- 
     flex: 1;
     padding: 20px;
     box-sizing: border-box;
@@ -88,7 +70,7 @@ label {
   }
 
   .grid-item {
-    background:orangered ;
+    background: #fff;
     color: #000;
     padding: 20px;
     border-radius: 5;
