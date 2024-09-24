@@ -2,7 +2,8 @@
     <head>
         <title>First Class Html</title>
         <link rel='stylesheet' href='task.css' />
-        <script src="https://cdn.tailwindcss.com"></script>                                         
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="vue.js"></script>                                         
         <script>
             tailwind.config = {
               theme: {
@@ -78,69 +79,246 @@
        
     </head>
  
-    <body>    
-        <div id='header' class='slideDown p-4 bg-orange-400 text-white'>
-          <h1 class=" text-3x1 ">Header</h1>
+    <body id="app" class="bg-white-50 flex flex-col text-orange-900 h-svh">
+        <div class="bg-orange-50 p-8">
+          <h1 class="text-orange-300 text-4xl">Welcome</h1>
+          <button @click="changesMsg">Change me</button>
         </div>
         <div id='container' class='flex'>
-          <div id='sidebar' class='w-1/4 p-5 bg-orange-300 text-white'>
-            <h1>Sidebar</h1>
-          </div>
-          <div id='mainBox' class='flex-1 flex gap-10p-6 bg-orange-100'>
-            <div class='grid-item slideDown' style='width: 30%;'>
-                <form id='taskForm' onsubmit='event.preventDefault();' style='display: flex; flex-direction:column; gap: 4px;'>
-                  <label>Checkout Form</label>
-                  <input type='text' name='first_name' required id='first_name' placeholder="Enter you first_name"/>
-                  <span style='color:red;' hidden id='taskErrorField-first_name'>This field is required</span>
-                  <input type='text' name='last_name' required id='last_name' placeholder="Enter you last_name"/>
-                  <span style='color:red;' hidden id='taskErrorField-last_name'>This field is required</span>
-                  <input type='tel' name='number' required id='number' placeholder="Enter you phone_number"/>
-                  <span style='color:red;' hidden id='taskErrorField-number'>This field is required</span>
-                  <textarea id="address" name="address" placeholder="enter your full address"></textarea>
-                  <span style='color:red;' hidden id='taskErrorField-address'>This field is required</span>
-                  <input type='text' name='email' required id='email' placeholder="Enter you email"/>
-                  <span style='color:red;' hidden id='taskErrorField-email'>This field is required</span>
-                  <input type='text' name='postal_code' required id='postal_code' placeholder="Enter you postal_code"/>
-                  <span style='color:red;' hidden id='taskErrorField-postal_code'>This field is required</span>
-                  <select id="city" name="city">
+            <div class="w-72 box-border p-8 bg-orange-100">
+              <h1 class="text-orange-400 text-2xl">Sidebar</h1>
+            </div>
+            <div id="mainBox" class="flex w-full gap-4">
+                <div
+                  class="bg-white-500 text-black-500 p-4 rounded-md shadow-2xl slideDown"
+                  style="width: 30%"
+                >
+                  <form
+                    id="ecommerceForm"
+                    onsubmit="event.preventDefault();"
+                    style="display: flex; flex-direction: column; gap: 4px"
+                  >
+                    <label>Checkout Form ( {{computedTotalCart}} )</label>
+                    <input
+                      type="text"
+                      name="first_name"
+                      required
+                      v-model="checkoutForm.first_name"
+                      id="first_name"
+                      placeholder="Enter you first_name"
+                    />
+                    <span style="color: red" hidden id="taskErrorField-first_name"
+                      >This field is required</span
+                    >
+                    <input
+                      type="text"
+                      name="last_name"
+                      required
+                      v-model="checkoutForm.last_name"
+                      id="last_name"
+                      placeholder="Enter you last_name"
+                    />
+                    <span style="color: red" hidden id="taskErrorField-last_name"
+                      >This field is required</span
+                    >
+                    <input
+                    type="tel"
+                    name="number"
+                    required
+                    id="number"
+                    v-model="checkoutForm.phone_number"
+                    placeholder="Enter you phone_number"
+                  />
+                  <span style="color: red" hidden id="taskErrorField-number"
+                    >This field is required</span
+                  >
+                  <textarea
+                    id="address"
+                    name="address"
+                    v-model="checkoutForm.address"
+                    placeholder="enter your full address"
+                  ></textarea>
+                  <span style="color: red" hidden id="taskErrorField-address"
+                    >This field is required</span
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    v-model="checkoutForm.email"
+                    id="email"
+                    placeholder="Enter you email"
+                  />
+                  <span style="color: red" hidden id="taskErrorField-email"
+                    >This field is required</span
+                  >
+                  <input
+                    type="text"
+                    name="postal_code"
+                    v-model="checkoutForm.postal_code"
+                    required
+                    id="postal_code"
+                    placeholder="Enter you postal_code"
+                  />
+                  <span style="color: red" hidden id="taskErrorField-postal_code"
+                    >This field is required</span
+                  >
+                  <select id="city" name="city"
+                    v-model="checkoutForm.city"
+                  >
                     <option selected>Karachi</option>
-                    <option >Lahore</option>
-                    <option >Islamabed</option>
-                    <option >Peshawar</option>
-                    <option>multan</option>
-                    <option >Queta</option>
+                    <option>Lahore</option>
+                    <option>Islamabed</option>
+                    <option>Peshawar</option>
+                    <option>Queta</option>
                   </select>
-                  <span style='color:red;' hidden id='taskErrorField-city'>This field is required</span>
-                  <select id="country" name="country">
-                    <option selected>Pakistan</option>
-                  </select>
-                  <span style='color:red;' hidden id='taskErrorField-country'>This field is required</span>
-                  <div>
-                      <label class="paymentLabel">
-                          <input type='radio' name='task' required id='payment_method' checked placeholder="Enter you payment_method"/>
-                          Cash on Delivery
-                      </label>
-                      <label class="paymentLabel">
-                        <input type='radio' name='task' required id='payment_method' placeholder="Enter you payment_method"/>
-                        Online Payment
-                    </label>
-                  </div>
-                  <button type='button' onclick="sumbitCheckout()" id='submitBtn' class='submitBtn' style='background-color: rgba(255, 132, 0, 0.735); color: white; padding: 10px; border: none; border-radius: 5px;'>Checkout</button>
-                </form>
+                  <span style="color: red" hidden id="taskErrorField-city"
+                    >This field is required</span
+                  >
+                  <select id="country" name="country"
+                  v-model="checkoutForm.country"
+                >
+                  <option selected>Pakistan</option>
+                </select>
+                <span style="color: red" hidden id="taskErrorField-country"
+                  >This field is required</span
+                >
                 <div>
-                  <label>Cart Details</label>
-                  <div id="boxList"  style="width: 80%; display: flex; flex-direction: column; gap: 4px;" class='grid-item slideDown p-6 bg-orange-100'>
- 
+                  <label class="flex gap-2 blue-700">
+                    <input
+                      type="radio"
+                      name="task"
+                      v-model="checkoutForm.payment_method"
+                      required
+                      id="payment_method"
+                      checked
+                      placeholder="Enter you payment_method"
+                    />
+                    Cash on Delivery
+                  </label>
+                  <label class="flex gap-2">
+                    <input
+                      type="radio"
+                      v-model="checkoutForm.payment_method"
+                      name="task"
+                      required
+                      id="payment_method"
+                      placeholder="Enter you payment_method"
+                    />
+                    Online Payment
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  @click="sumbitCheckout()"
+                  id="submitBtn"
+                  class="bg-blue-600 text-white-200 p-2 border-0 hover:bg-blue-700 active:bg-blue-700 rounded-md"
+                >
+                  Checkout
+                </button>
+              </form>
+              <div>
+                <label>Cart Details</label>
+                <div
+                  id="boxList"
+                  style="
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                  "
+                  class="grid-item slideDown"
+                >
+                <div class="box bg-red-50 font-medium text-blue-900">
+                  <div
+                    style="
+                      padding-left: 10px;
+                      border-radius: 50%;
+                      padding-right: 10px;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                    "
+                    v-for="(x, index) in checkoutForm.cart_details"
+                  >
+                  <p>{{ x.name}}</p>
+                  <div
+                    class="text-seaGreen-500"
+                    v-if="x.discounted_price < x.price"
+                  >
+                    <span class="text-red-600 line-through" :data-id="x.id">
+                      {{x.price}}
+                    </span>
+                    {{x.discounted_price}}
+                  </div>
+                  <div class="text-seaGreen-500" v-else>{{x.price}}</div>
+                  <div>{{'Quantity '+ x.quantity }}</div>
+                  <div>
+                    <button class="text-red-500" @click="removeItemCart(x.id)">
+                      X
+                    </button>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div id="main" class="p-4 grid grow border-box grid-cols-2 gap-4">
+            <div
+              class="bg-white-500 text-black-500 p-4 rounded-md shadow-2xl slideDown"
+              v-for="(x, index) in products"
+            >
+              <h1 class="font-bold">{{ x.name }}</h1>
+              <p class="font-medium">{{ x.description }}</p>
+  
+              <div class="text-seaGreen-500" v-if="x.discounted_price < x.price">
+                <span class="text-red-600 line-through">{{ x.price }}</span>
+                {{ x.discounted_price }}
+              </div>
+              <div class="text-seaGreen-500" v-else>{{ x.price }}</div>
+              <div class="">
+                <input type="number" :id='"qty"+ x.id' />
+                <button
+                  class="bg-blue-400 text-white-200 font-medium rounded-lg w-32 py-1"
+                  @click="addToCart(x.id)"
+                >
+                  Add to Cart
+                </button>
+              </div>
                   </div>
                 </div>
             </div>
-            <div id='main'>
- 
+        </div>
             </div>
         </div>
       </body>
     <script>
-           var initialCheckoutForm = {
+        const {crateApp, ref, onMounted, dateFormat, computed }=vue;
+         createApp({
+            setup() {
+                const message = ref('Hello vue!');
+                const initialCheckoutForm = {
+                    first_name: '',
+                    last_name: '',
+                    phone_number: 0,
+                    address: '',
+                    email: '',
+                    postal_code: '',
+                    city: '',
+                    country: '',
+                   payment_method: '',
+                   shipping_details: {
+                     address:'',
+                    city: '',
+                   postal_code: '',
+                   country: '',
+                  phone_number: '',
+                  reciever_name: ''
+                  },
+                   total_amount: '',
+                  cart_details: [],
+        };
+        const checkoutForm =ref({
             first_name: '',
             last_name: '',
             phone_number: 0,
@@ -160,32 +338,9 @@
             },
             total_amount: '',
             cart_details: [],
-        }
-
-        var checkoutForm = {
-            first_name: '',
-            last_name: '',
-            phone_number: 0,
-            address: '',
-            email: '',
-            postal_code: '',
-            city: '',
-            country: '',
-            payment_method: '',
-            shipping_details: {
-                address:'',
-                city: '',
-                postal_code: '',
-                country: '',
-                phone_number: '',
-                reciever_name: ''
-            },
-            total_amount: '',
-            cart_details: [],
-        }
- 
-        var products = [
-            {
+        });
+        const product =[
+        {
                 id: 1,
                 name: 'water bottle',
                 description: 'color: blue size: large',
@@ -221,6 +376,43 @@
                 discounted_price: 4700,
             },
         ];
+        onMounted(()=>{
+            alert('welcome');
+        });
+         const computedTotalCart =computed(() => {
+            var total =checkoutForm.value.cart_details.reduce((accumulator, currentValue) => {
+            var currentPrice = currentValue.discounted_price < currentValue.price ? currentValue.discounted_price : currentValue.price
+            return accumulator + currentPrice * currentValue.quantity
+          }, 0);
+          return total;
+         });
+         const validateFields =() => {
+            var basicFields = [
+            "first_name",
+            "last_name",
+            "address",
+            "postal_code",
+          ];
+          const basicValidation = () => {
+            var checkValidation = true;
+            basicFields.forEach((x) => {
+                if (
+                checkoutForm.value[x] == "" ||
+                checkoutForm.value[x] == null
+              ) {
+                checkValidation = false;
+                document.getElementById("taskErrorField-" + x).hidden = false;
+              } else {
+                document.getElementById("taskErrorField-" + x).hidden = true;
+              }
+            });
+            
+          }
+         }
+                }
+            }
+         )
+       
  
         renderProducts();
  
