@@ -142,6 +142,7 @@
             <span style="color: red" hidden id="taskErrorField-number"
               >This field is required</span
             >
+            
             <textarea
               id="address"
               name="address"
@@ -478,7 +479,7 @@
             return x.id == product;
           });
           if (cartExistIndex != -1) {
-            checkoutForm.value.cart_details[cartExistIndex].quantity +=
+      checkoutForm.value.cart_details[cartExistIndex].quantity +=
               parseInt(currentQty);
           } else {
             var cartItem = {
