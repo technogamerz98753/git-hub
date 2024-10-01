@@ -80,23 +80,38 @@
                 900: "#000000",
                 950: "#000000",
               },
+              'orange': {
+        DEFAULT: '#FB6A04',
+  50: '#FEE3CF',
+  100: '#FED5B9',
+  200: '#FDBA8C',
+  300: '#FCA05E',
+  400: '#FC8531',
+  500: '#FB6A04',
+  600: '#DD5D04',
+  700: '#BF5103',
+  800: '#A14403',
+  900: '#833702',
+  950: '#733102'
+},
+         
                     },
                 },
             },
         };
     </script>
 </head>
-<body id="app" class="bg-white flex flex-col text-blue-300 h-screen">
-    <div class="bg-red-50 p-8">
-        <h1 class="text-seaGreen-200 text-6xl">{{ message }}</h1>
-        <button @click="changeMsg" class="mt-4 bg-blue-200 text-white p-2 rounded">Change Me</button>
+<body id="app" class="bg-orange-100 flex flex-col text-black-200 h-screen">
+    <div class="bg-orange-50 p-8">
+        <h1 class="text-red-400 text-6xl">{{ message }}</h1>
+        <button @click="changeMsg" class="mt-4 bg-orange-200 text-white p-2 rounded">Change Me</button>
     </div>
     <div id="container" class="flex grow flex-column">
-        <div class="w-72 p-8 bg-red-100">
-            <h1 class="text-blue-400  text-2xl">Sidebar</h1>
+        <div class="w-72 p-8 bg-orange-200">
+            <h1 class="text-red-500  text-2xl">Sidebar</h1>
         </div>
         <div id="mainBox" class="flex w-full gap-4 p-4">
-            <div class="bg-white-500 text-black-500 p-4 rounded-md shadow-2xl slideDown" style="width: 30%;">
+            <div class="bg-orange-50 text-black-500 p-4 rounded-md shadow-2xl slideDown" style="width: 30%;">
               <form
               id="ecommerceForm"
               onsubmit="event.preventDefault();"
