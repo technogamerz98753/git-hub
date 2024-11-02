@@ -1,265 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Class Work | Homework | Test Server Change</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        blue: { 
-                          DEFAULT: "#353887",
-                         100: "#8D90D2",
-                         200: "#7073C7",
-                         300: "#5256BB",
-                         400: "#4144A4",
-                         500: "#353887",
-                         600: "#25275F",
-                         700: "#151736",
-                         800: "#06060E",
-                         900: "#000000",
-                         950: "#000000",
-                         },
-                         red: {
-                DEFAULT: "#CF2E39",
-                50: "#FEFBFB",
-                100: "#F9E4E6",
-                200: "#EFB6BA",
-                300: "#E5898F",
-                400: "#DA5B63",
-                500: "#CF2E39",
-                600: "#A9262F",
-                700: "#841D24",
-                800: "#5E151A",
-                900: "#390D10",
-                950: "#26080A",
-              },
-              white: {
-                DEFAULT: "#E8E8E8",
-                50: "#FFFFFF",
-                100: "#FCFCFC",
-                200: "#F7F7F7",
-                300: "#F2F2F2",
-                400: "#EDEDED",
-                500: "#E8E8E8",
-                600: "#CCCCCC",
-                700: "#B0B0B0",
-                800: "#949494",
-                900: "#787878",
-                950: "#6A6A6A",
-              },
-              black: {
-                DEFAULT: "#0F0F0F",
-                50: "#6B6B6B",
-                100: "#616161",
-                200: "#4D4D4D",
-                300: "#383838",
-                400: "#242424",
-                500: "#0F0F0F",
-                600: "#0A0A0A",
-                700: "#050505",
-                800: "#000000",
-                900: "#000000",
-                950: "#000000",
-              },
-              seaGreen: {
-                DEFAULT: "#31A24C",
-                50: "#A6E4B5",
-                100: "#97DFA8",
-                200: "#77D68E",
-                300: "#58CD74",
-                400: "#3AC15B",
-                500: "#31A24C",
-                600: "#247738",
-                700: "#174C24",
-                800: "#0A210F",
-                900: "#000000",
-                950: "#000000",
-              },
-              'orange': {
-        DEFAULT: '#FB6A04',
-  50: '#FEE3CF',
-  100: '#FED5B9',
-  200: '#FDBA8C',
-  300: '#FCA05E',
-  400: '#FC8531',
-  500: '#FB6A04',
-  600: '#DD5D04',
-  700: '#BF5103',
-  800: '#A14403',
-  900: '#833702',
-  950: '#733102'
-},
-         
-                    },
-                },
-            },
-        };
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            background-color: black; 
+            color: white; 
+        }
+        .sidebar { 
+            width: 200px; 
+            background-color: #333; 
+            padding: 20px; 
+            border-right: 1px solid #444; 
+        }
+        .sidebar h2 { 
+            font-size: 24px; 
+            margin: 0 0 20px; 
+            cursor: pointer; 
+            color: white; 
+        }
+        .separator {
+            border-bottom: 1px solid #444; 
+            margin-bottom: 20px; 
+        }
+        .sidebar a { 
+            text-decoration: none; 
+            color: #ddd; 
+            padding: 10px 0; 
+            display: block; 
+        }
+        .sidebar a:hover { 
+            background-color: #555; 
+        }
+        .main { 
+            flex-grow: 1; 
+            padding: 20px; 
+            display: none; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            border: 1px solid #444; 
+            padding: 8px; 
+        }
+        th { 
+            background-color: #555; 
+        }
+        .add-product {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #222; 
+        }
+        .add-product h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: white; 
+        }
+        input[type="text"], input[type="number"], input[type="date"] {
+            flex: 1; 
+            padding: 6px;
+            margin-right: 5px;
+            font-size: 12px;
+            background-color: #333; 
+            color: white; 
+            border: 1px solid #444; 
+        }
+        button {
+            padding: 6px 10px;
+            font-size: 12px;
+            background-color: #555; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+        }
+        button:hover {
+            background-color: #777; 
+        }
+        .github-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px; 
+            height: 40px;
+        }
+        .stock-summary {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+    </style>
 </head>
-<body id="app" class="bg-orange-100 flex flex-col text-black-200 h-screen">
-    <div class="bg-orange-50 p-8">
-        <h1 class="text-red-400 text-6xl">{{ message }}</h1>
-        <button @click="changeMsg" class="mt-4 bg-orange-200 text-white p-2 rounded">Change Me</button>
+<body>
+    <div class="sidebar">
+        <h2 onclick="toggleMenu()">Menu</h2>
+        <div class="separator"></div>
+        <a href="#products" class="menu-item" onclick="showSection('productsSection')">Products</a>
+        <a href="#productStock" class="menu-item" onclick="showSection('stockSection')">Product Stock</a>
+        <a href="#logout" class="menu-item">Logout</a>
     </div>
-    <div id="container" class="flex grow flex-column">
-        <div class="w-72 p-8 bg-orange-200">
-            <h1 class="text-red-500  text-2xl">Sidebar</h1>
-        </div>
-        <div id="mainBox" class="flex w-full gap-4 p-4">
-            <div class="bg-orange-50 text-black-500 p-4 rounded-md shadow-2xl slideDown" style="width: 30%;">
-              <form
-              id="ecommerceForm"
-              onsubmit="event.preventDefault();"
-              style="display: flex; flex-direction: column; gap: 4px"
-            >
-                    <label>Checkout Form ({{ computedTotalCart }})</label>
-                    <input type="text" v-model="checkoutForm.first_name" placeholder="First Name" required />
-                    <span class="text-red-600" hidden id="taskErrorField-number">This field is required</span>
-                    
-                    <input type="text" v-model="checkoutForm.last_name" placeholder="Last Name" required />
-                    <span class="text-red-600"  hidden id="taskErrorField-number">This field is required</span>
-                    
-                    <input type="tel" name="number"required id="number" v-model="checkoutForm.phone_number" placeholder="Phone Number" />
-                    <span class="text-red-600"  hidden id="taskErrorField-number">This field is required</span>
 
-                    <textarea v-model="checkoutForm.address" placeholder="Enter your full address"></textarea>
-                    <span class="text-red-600" hidden id="taskErrorField-number">This field is required</span>
-                    
-                    <input type="email" v-model="checkoutForm.email" placeholder="Email" required />
-                    <span class="text-red-600" hidden id="taskErrorField-number">This field is required</span>
-                    
-                    <input type="text" v-model="checkoutForm.postal_code" placeholder="Postal Code" required />
-                    <span class="text-red-600" hidden id="taskErrorField-number"
-                    >This field is required</span>
-                    
-                    <select id="city" name="city"
-                    v-model="checkoutForm.city"
-                  >
-                        <option selected>Karachi</option>`
-                        <option>Lahore</option>
-                        <option>Islamabad</option>
-                        <option>Peshawar</option>
-                        <option>Quetta</option>
-                    </select>
-                    <span style="color: red" hidden id="taskErrorField-city"
-                    >This field is required</span
-                  >
-                  <select id="country" name="country"
-                  v-model="checkoutForm.country"
-                >
-                        <option selected>Pakistan</option>`
-                        <option selected>tajikistan</option>
-                    </select>
-                    
-                    <div>
-                        <label>
-                            <input type="radio" v-model="checkoutForm.payment_method" value="cash" required /> Cash on Delivery
-                        </label>
-                        <label>
-                            <input type="radio" v-model="checkoutForm.payment_method" value="online" required /> Online Payment
-                        </label>
-                    </div>
-                    
-                    <button type="button" @click="submitCheckout" class="bg-blue-600 text-white p-2 rounded-md">Checkout</button>
-                </form>
-                <div>
-                    <label>Cart Details</label>
-                    <div id="boxList" class="mt-2">
-                        <div v-for="(item, index) in checkoutForm.cart_details" :key="index" class="flex justify-between">
-                            <p>{{ item.name }}</p>
-                            <div>
-                                <span v-if="item.discounted_price < item.price" class="text-red-600 line-through">{{ item.price }}</span>
-                                {{ item.discounted_price }}
-                            </div>
-                            <div>{{ 'Quantity: ' + item.quantity }}</div>
-                            <button @click="removeItemCart(item.id)" class="text-red-500">X</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="main" class="w-full p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div v-for="(product, index) in products" :key="index" class="bg-white p-4 rounded-md shadow-2xl">
-                    <h1 class="font-bold">{{ product.name }}</h1>
-                    <p class="font-medium">{{ product.description }}</p>
-                    <div>
-                        <span v-if="product.discounted_price < product.price" class="text-red-600 line-through">{{ product.price }}</span>
-                        {{ product.discounted_price }}
-                    </div>
-                    <input type="number" v-model.number="product.quantity" placeholder="Quantity" />
-                    <button @click="addToCart(product.id)" class="bg-blue-400 text-white rounded-lg">Add to Cart</button>
-                </div>
-            </div>
+    <div class="main" id="productsSection" style="display: block;">
+        <h1>Stock Management</h1>
+        <div class="stock-summary" id="stockSummary">
+            <strong>Total Incoming Stock:</strong> <span id="totalIncoming">0</span><br>
+            <strong>Total Outgoing Stock:</strong> <span id="totalOutgoing">0</span>
         </div>
+        <div class="add-product">
+            <div>
+                <input type="text" id="productName" placeholder="Product Name" required>
+                <input type="date" id="productDate" required>
+            </div>
+            <div>
+                <input type="number" id="productQuantity" placeholder="Qty" required min="1">
+                <input type="number" id="productPrice" placeholder="Price" required min="0.01" step="0.01">
+                <input type="text" id="productNote" placeholder="Notes">
+            </div>
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="stockTableBody">
+            </tbody>
+        </table>
     </div>
+
+    <div class="main" id="stockSection">
+        <h1>Manage Stock</h1>
+
+        <div class="add-product">
+            <h3>Add Incoming Stock</h3>
+            <div>
+                <input type="text" id="incomingProductName" placeholder="Product Name" required>
+                <input type="number" id="incomingQuantity" placeholder="Qty" required min="1">
+                <input type="text" id="incomingNote" placeholder="Notes">
+            </div>
+            <button onclick="addIncomingStock()">Add Incoming Stock</button>
+        </div>
+
+        <div class="add-product">
+            <h3>Add Outgoing Stock</h3>
+            <div>
+                <input type="text" id="outgoingProductName" placeholder="Product Name" required>
+                <input type="number" id="outgoingQuantity" placeholder="Qty" required min="1">
+                <input type="text" id="outgoingNote" placeholder="Notes">
+            </div>
+            <button onclick="addOutgoingStock()">Add Outgoing Stock</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="stockManagementTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <a href="https://github.com/your-username" target="_blank">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="github-logo" alt="GitHub Logo">
+    </a>
 
     <script>
-        const { createApp, ref, computed } = Vue;
+        const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
+        let totalIncomingStock = parseInt(localStorage.getItem('totalIncomingStock')) || 0;
+        let totalOutgoingStock = parseInt(localStorage.getItem('totalOutgoingStock')) || 0;
 
-        createApp({
-            setup() {
-                const message = ref("WelCome!");
-                const checkoutForm = ref({
-                    first_name: "",
-                    last_name: "",
-                    phone_number: "",
-                    address: "",
-                    email: "",
-                    postal_code: "",
-                    city: "",
-                    country: "Pakistan",
-                    payment_method: "",
-                    cart_details: [],
-                });
+        updateStockSummary();
+        renderStockTable();
 
-                const products = ref([
-                    { id: 1, name: "Water Bottle", description: "Color: Blue Size: Large", price: 100, discounted_price: 99 },
-                    { id: 2, name: "Mouse", description: "Wired USB Port", price: 250, discounted_price: 199 },
-                    { id: 3, name: 'watch', description: 'color: black, watch type: smart, brand: apple',price: 4999, discounted_price: 5500 },
-                    { id: 4, name: 'infinix s23', description: "color blue, storage: 120gb ram: 2gb display: 6x4",price: 25000,discounted_price: 24999},
-                    { id: 5, name:  "shoes",  description: "size: 8, color blue, type: sports wear", price: 3000,discounted_price: 3000},
-                    { id: 6, name:   "Water Bottle", description: "Color: Blue Size: Large", price: 100, discounted_price: 99 },
-                ]);
-                
+        function toggleMenu() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.classList.toggle('show');
+            });
+        }
 
-                const computedTotalCart = computed(() => {
-                    return checkoutForm.value.cart_details.reduce((total, item) => {
-                        return total + (item.discounted_price < item.price ? item.discounted_price : item.price) * item.quantity;
-                    }, 0);
-                });
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.main');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
 
-                const submitCheckout = () => {
-                    alert("Thank you for shopping with us!");
-                    checkoutForm.value.cart_details = [];
-                };
+        function addProduct() {
+            const productName = document.getElementById('productName').value;
+            const productDate = document.getElementById('productDate').value;
+            const productQuantity = parseInt(document.getElementById('productQuantity').value);
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+            const productNote = document.getElementById('productNote').value;
 
-                const addToCart = (productId) => {
-                    const product = products.value.find(p => p.id === productId);
-                    const existingItem = checkoutForm.value.cart_details.find(item => item.id === productId);
+            if (productName && productDate && productQuantity > 0 && productPrice > 0) {
+                const total = productQuantity * productPrice;
+                const tableBody = document.getElementById('stockTableBody');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${productName}</td><td>${productDate}</td><td>${productQuantity}</td><td>${productPrice.toFixed(2)}</td><td>${total.toFixed(2)}</td><td>${productNote}</td><td><button onclick="removeProduct(this)">Remove</button></td>`;
+                tableBody.appendChild(row);
 
-                    if (existingItem) {
-                        existingItem.quantity++;
-                    } else {
-                        checkoutForm.value.cart_details.push({ ...product, quantity: 1 });
-                    }
-                };
+                // Update stock data
+                stockData[productName] = (stockData[productName] || 0) + productQuantity;
 
-                const removeItemCart = (id) => {
-                    const index = checkoutForm.value.cart_details.findIndex(item => item.id === id);
-                    if (index !== -1) checkoutForm.value.cart_details.splice(index, 1);
-                };
+                // Save to local storage
+                localStorage.setItem('stockData', JSON.stringify(stockData));
 
-                const changeMsg = () => {
-                    message.value = "I am now changed!";
-                };
+                // Clear input fields
+                clearProductFields();
+                updateStockSummary();
+            } else {
+                alert("Please fill in all required fields with valid values.");
+            }
+        }
 
-                return { message, checkoutForm, products, computedTotalCart, submitCheckout, addToCart, removeItemCart, changeMsg };
-            },
-        }).mount("#app");
+        function addIncomingStock() {
+            const productName = document.getElementById('incomingProductName').value;
+            const quantity = parseInt(document.getElementById('incomingQuantity').value);
+            const note = document.getElementById('incomingNote').value;
+
+            if (productName && quantity > 0) {
+                const tableBody = document.getElementById('stockManagementTableBody');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>Incoming</td><td>${productName}</td><td>${quantity}</td><td>${note}</td>`;
+                tableBody.appendChild(row);
+
+                // Update stock data
+                stockData[productName] = (stockData[productName] || 0) + quantity;
+                totalIncomingStock += quantity;
+
+                // Save to local storage
+                localStorage.setItem('stockData', JSON.stringify(stockData));
+                localStorage.setItem('totalIncomingStock', totalIncomingStock);
+
+                // Clear input fields
+                clearIncomingFields();
+                updateStockSummary();
+            } else {
+                alert("Please fill in all required fields with valid values.");
+            }
+        }
+
+        function addOutgoingStock() {
+            const productName = document.getElementById('outgoingProductName').value;
+            const quantity = parseInt(document.getElementById('outgoingQuantity').value);
+            const note = document.getElementById('outgoingNote').value;
+
+            if (productName && quantity > 0) {
+                if (stockData[productName] === undefined || stockData[productName] < quantity) {
+                    alert("Insufficient stock available.");
+                    return;
+                }
+                const tableBody = document.getElementById('stockManagementTableBody');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>Outgoing</td><td>${productName}</td><td>- ${quantity}</td><td>${note}</td>`;
+                tableBody.appendChild(row);
+
+                // Update stock data
+                stockData[productName] -= quantity;
+                totalOutgoingStock += quantity;
+
+                // Save to local storage
+                localStorage.setItem('stockData', JSON.stringify(stockData));
+                localStorage.setItem('totalOutgoingStock', totalOutgoingStock);
+
+                // Clear input fields
+                clearOutgoingFields();
+                updateStockSummary();
+            } else {
+                alert("Please fill in all required fields with valid values.");
+            }
+        }
+
+        function removeProduct(button) {
+            const row = button.parentNode.parentNode;
+            const productName = row.cells[0].textContent;
+            const quantity = parseInt(row.cells[2].textContent);
+            row.parentNode.removeChild(row);
+
+            // Update stock data
+            if (stockData[productName] !== undefined) {
+                stockData[productName] -= quantity;
+                if (stockData[productName] <= 0) {
+                    delete stockData[productName];
+                }
+            }
+
+            // Save to local storage
+            localStorage.setItem('stockData', JSON.stringify(stockData));
+            updateStockSummary();
+        }
+
+        function clearProductFields() {
+            document.getElementById('productName').value = '';
+            document.getElementById('productDate').value = '';
+            document.getElementById('productQuantity').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productNote').value = '';
+        }
+
+        function clearIncomingFields() {
+            document.getElementById('incomingProductName').value = '';
+            document.getElementById('incomingQuantity').value = '';
+            document.getElementById('incomingNote').value = '';
+        }
+
+        function clearOutgoingFields() {
+            document.getElementById('outgoingProductName').value = '';
+            document.getElementById('outgoingQuantity').value = '';
+            document.getElementById('outgoingNote').value = '';
+        }
+
+        function updateStockSummary() {
+            document.getElementById('totalIncoming').textContent = totalIncomingStock;
+            document.getElementById('totalOutgoing').textContent = totalOutgoingStock;
+        }
+
+        function renderStockTable() {
+            const stockTableBody = document.getElementById('stockTableBody');
+            stockTableBody.innerHTML = ''; // Clear existing rows
+            for (const product in stockData) {
+                if (stockData[product] > 0) {
+                    const row = document.createElement('tr');
+                    const total = stockData[product] * (parseFloat(document.getElementById('productPrice').value) || 0); // Replace this with the correct price if available
+                    row.innerHTML = `<td>${product}</td><td>-</td><td>${stockData[product]}</td><td>${(parseFloat(document.getElementById('productPrice').value) || 0).toFixed(2)}</td><td>${total.toFixed(2)}</td><td>-</td><td><button onclick="removeProduct(this)">Remove</button></td>`;
+                    stockTableBody.appendChild(row);
+                }
+            }
+        }
     </script>
 </body>
 </html>
