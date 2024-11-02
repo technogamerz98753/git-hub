@@ -1,0 +1,92 @@
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    display: flex; 
+    background-color: black; 
+    color: white; 
+}
+.sidebar { 
+    width: 200px; 
+    background-color: #333; 
+    padding: 20px; 
+    border-right: 1px solid #444; 
+}
+.sidebar h2 { 
+    font-size: 24px; 
+    margin: 0 0 20px; 
+    cursor: pointer; 
+    color: white; 
+}
+.separator {
+    border-bottom: 1px solid #444; 
+    margin-bottom: 20px; 
+}
+.sidebar a { 
+    text-decoration: none; 
+    color: #ddd; 
+    padding: 10px 0; 
+    display: block; 
+}
+.sidebar a:hover { 
+    background-color: #555; 
+}
+.main { 
+    flex-grow: 1; 
+    padding: 20px; 
+    display: none; 
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+}
+th, td { 
+    border: 1px solid #444; 
+    padding: 8px; 
+}
+th { 
+    background-color: #555; 
+}
+.add-product {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #222; 
+}
+.add-product h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: white; 
+}
+input[type="text"], input[type="number"], input[type="date"] {
+    flex: 1; 
+    padding: 6px;
+    margin-right: 5px;
+    font-size: 12px;
+    background-color: #333; 
+    color: white; 
+    border: 1px solid #444; 
+}
+button {
+    padding: 6px 10px;
+    font-size: 12px;
+    background-color: #555; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+button:hover {
+    background-color: #777; 
+}
+.github-logo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px; 
+    height: 40px;
+}
+.stock-summary {
+    margin: 20px 0;
+    font-size: 16px;
+}
