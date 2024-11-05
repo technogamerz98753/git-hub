@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #222;
+  padding: 20px;
+  border-right: 2px solid #444;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.separator {
+  border-bottom: 2px solid #444;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #ccc;
+  padding: 12px 0;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #444;
+  padding-left: 10px;
+}
+
+.main {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}
+
+h1 {
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.add-product {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.add-product h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.add-product div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.add-product input,
+.add-product button {
+  margin: 5px 10px 10px 0;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+  flex: 1 1 30%;
+}
+
+.add-product input[type="number"] {
+  max-width: 120px;
+}
+
+.add-product input[type="text"] {
+  flex-grow: 2;
+}
+
+.add-product button {
+  background-color: #555;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-product button:hover {
+  background-color: #777;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+th {
+  background-color: #444;
+  font-size: 16px;
+}
+
+td {
+  font-size: 14px;
+}
+
+td button {
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+td button:hover {
+  background-color: #ff7777;
+}
