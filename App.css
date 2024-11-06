@@ -1,149 +1,169 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body { 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  margin: 0; 
+  display: flex; 
+  background-color: #121212; 
+  color: #f0f0f0; 
+  height: 100vh; 
+  overflow: hidden;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #1a1a1a;
-  color: white;
-  display: flex;
-  height: 100vh;
-}
-
-.sidebar {
-  width: 250px;
-  background-color: #222;
-  padding: 20px;
-  border-right: 2px solid #444;
-  position: fixed;
+/* Sidebar */
+.sidebar { 
+  width: 240px; 
+  background-color: #1c1c1c; 
+  padding: 20px; 
+  border-right: 2px solid #444; 
   height: 100%;
-  top: 0;
-  left: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar h2 {
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  margin-bottom: 20px;
-  font-weight: normal;
+.sidebar h2 { 
+  font-size: 26px; 
+  margin: 0 0 20px; 
+  cursor: pointer; 
+  color: #fff; 
+  font-weight: 600;
+  text-align: center;
 }
 
 .separator {
-  border-bottom: 2px solid #444;
-  margin-bottom: 20px;
+  border-bottom: 2px solid #444; 
+  margin-bottom: 20px; 
 }
 
-.sidebar a {
-  display: block;
-  color: #ccc;
-  padding: 12px 0;
-  text-decoration: none;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-}
-
-.sidebar a:hover {
-  background-color: #444;
-  padding-left: 10px;
-}
-
-.main {
-  margin-left: 250px;
-  padding: 20px;
-  flex-grow: 1;
-  overflow-y: auto;
-  transition: margin-left 0.3s ease;
-}
-
-h1 {
-  font-size: 28px;
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-.add-product {
-  background-color: #333;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.add-product h3 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.add-product div {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-}
-
-.add-product input,
-.add-product button {
-  margin: 5px 10px 10px 0;
-  padding: 12px;
+.sidebar a { 
+  text-decoration: none; 
+  color: #ccc; 
+  padding: 12px; 
+  margin: 6px 0;
   border-radius: 5px;
-  border: 1px solid #444;
-  background-color: #222;
-  color: #fff;
-  font-size: 14px;
-  flex: 1 1 30%;
-}
-
-.add-product input[type="number"] {
-  max-width: 120px;
-}
-
-.add-product input[type="text"] {
-  flex-grow: 2;
-}
-
-.add-product button {
-  background-color: #555;
-  cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
-.add-product button:hover {
-  background-color: #777;
+.sidebar a:hover { 
+  background-color: #333; 
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+/* Main content area */
+.main { 
+  flex-grow: 1; 
+  padding: 30px; 
+  overflow-y: auto; 
+  display: none;
 }
 
-th,
-td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #444;
+.main h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 30px; 
+}
+
+th, td { 
+  padding: 15px; 
+  text-align: left;
+  border: 1px solid #444; 
+  background-color: #222; 
+  font-size: 14px; 
+  color: #ddd;
 }
 
 th {
-  background-color: #444;
-  font-size: 16px;
+  background-color: #444; 
+  font-weight: 600;
 }
 
-td {
+/* Form fields styling */
+.add-product {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  background-color: #2a2a2a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-product h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  color: #fff; 
+  font-weight: 600;
+}
+
+input[type="text"], input[type="number"], input[type="date"] {
+  flex: 1; 
+  padding: 12px;
+  margin-right: 10px;
   font-size: 14px;
-}
-
-td button {
-  background-color: #ff5555;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 6px 12px;
+  background-color: #333; 
+  color: white; 
+  border: 1px solid #444; 
   border-radius: 5px;
-  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
-td button:hover {
-  background-color: #ff7777;
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus {
+  border-color: #ff6f61;
+  outline: none;
+}
+
+button {
+  padding: 12px 18px;
+  font-size: 14px;
+  background-color: #ff6f61; 
+  color: white; 
+  border: none; 
+  cursor: pointer; 
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d55c4e; 
+}
+
+/* Github logo styling */
+.github-logo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px; 
+  height: 40px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.github-logo:hover {
+  opacity: 1;
+}
+
+/* Search Bar Styling */
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-bar input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  width: 200px;
+  background-color: #333;
+  color: white;
+}
+
+.search-bar input:focus {
+  border-color: #ff6f61;
+  outline: none;
 }
