@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+
 function App() {
   const [currentSection, setCurrentSection] = useState('productsSection');
   const [stockData, setStockData] = useState(JSON.parse(localStorage.getItem('stockData')) || {});
@@ -40,6 +41,13 @@ function App() {
     localStorage.setItem('salesData', JSON.stringify(updatedSales));
   };
 
+  const removeProduct = (productName) => {
+    const updatedStock = { ...stockData };
+    delete updatedStock[productName];
+    setStockData(updatedStock);
+    localStorage.setItem('stockData', JSON.stringify(updatedStock));
+  };
+
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <div style={sidebarStyle}>
@@ -53,7 +61,11 @@ function App() {
       
       <div style={{ flex: 1, padding: '30px', overflowY: 'auto' }}>
         {currentSection === 'productsSection' && (
-          <ProductManagement addProduct={addProduct} stockData={stockData} />
+          <ProductManagement
+            addProduct={addProduct}
+            removeProduct={removeProduct}
+            stockData={stockData}
+          />
         )}
         {currentSection === 'stockSection' && (
           <StockManagement
@@ -63,7 +75,10 @@ function App() {
           />
         )}
         {currentSection === 'salesSection' && (
-          <SalesManagement addSale={addSale} salesData={salesData} />
+          <SalesManagement
+            addSale={addSale}
+            salesData={salesData}
+          />
         )}
       </div>
       
@@ -119,7 +134,7 @@ const githubButtonStyle = {
 };
 
 // ProductManagement Component
-function ProductManagement({ addProduct, stockData }) {
+function ProductManagement({ addProduct, removeProduct, stockData }) {
   const [productName, setProductName] = useState('');
   const [productDate, setProductDate] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
@@ -193,7 +208,7 @@ function ProductManagement({ addProduct, stockData }) {
               <tr key={product}>
                 <td>{product}</td>
                 <td>{stockData[product]}</td>
-                <td><button onClick={() => alert("Remove functionality")}>Remove</button></td>
+                <td><button onClick={() => removeProduct(product)}>Remove</button></td>
               </tr>
             ))}
           </tbody>
