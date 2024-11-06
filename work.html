@@ -5,98 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Management</title>
     <style>
+        /* General body style */
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             display: flex; 
-            background-color: black; 
-            color: white; 
+            background-color: #121212; 
+            color: #f0f0f0; 
+            height: 100vh; 
+            overflow: hidden;
         }
+
+        /* Sidebar */
         .sidebar { 
-            width: 200px; 
-            background-color: #333; 
+            width: 240px; 
+            background-color: #1c1c1c; 
             padding: 20px; 
-            border-right: 1px solid #444; 
+            border-right: 2px solid #444; 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
         }
+
         .sidebar h2 { 
-            font-size: 24px; 
+            font-size: 26px; 
             margin: 0 0 20px; 
             cursor: pointer; 
-            color: white; 
+            color: #fff; 
+            font-weight: 600;
+            text-align: center;
         }
+
         .separator {
-            border-bottom: 1px solid #444; 
+            border-bottom: 2px solid #444; 
             margin-bottom: 20px; 
         }
+
         .sidebar a { 
             text-decoration: none; 
-            color: #ddd; 
-            padding: 10px 0; 
-            display: block; 
+            color: #ccc; 
+            padding: 12px; 
+            margin: 6px 0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
+
         .sidebar a:hover { 
-            background-color: #555; 
+            background-color: #333; 
         }
+
+        /* Main content area */
         .main { 
             flex-grow: 1; 
-            padding: 20px; 
-            display: none; 
+            padding: 30px; 
+            overflow-y: auto; 
+            display: none;
         }
+
+        .main h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styling */
         table { 
             width: 100%; 
             border-collapse: collapse; 
-            margin-top: 20px; 
+            margin-top: 30px; 
         }
+
         th, td { 
+            padding: 15px; 
+            text-align: left;
             border: 1px solid #444; 
-            padding: 8px; 
-        }
-        th { 
-            background-color: #555; 
-        }
-        .add-product {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #444;
-            border-radius: 5px;
             background-color: #222; 
+            font-size: 14px; 
+            color: #ddd;
         }
+
+        th {
+            background-color: #444; 
+            font-weight: 600;
+        }
+
+        /* Form fields styling */
+        .add-product {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background-color: #2a2a2a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
         .add-product h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
-            color: white; 
+            margin: 0 0 20px;
+            font-size: 20px;
+            color: #fff; 
+            font-weight: 600;
         }
+
         input[type="text"], input[type="number"], input[type="date"] {
             flex: 1; 
-            padding: 6px;
-            margin-right: 5px;
-            font-size: 12px;
+            padding: 12px;
+            margin-right: 10px;
+            font-size: 14px;
             background-color: #333; 
             color: white; 
             border: 1px solid #444; 
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
         button {
-            padding: 6px 10px;
-            font-size: 12px;
-            background-color: #555; 
+            padding: 12px 18px;
+            font-size: 14px;
+            background-color: #ff6f61; 
             color: white; 
             border: none; 
             cursor: pointer; 
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: #777; 
+            background-color: #d55c4e; 
         }
+
+        /* Github logo styling */
         .github-logo {
             position: fixed;
             top: 20px;
             right: 20px;
             width: 40px; 
             height: 40px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
-        .stock-summary {
-            margin: 20px 0;
-            font-size: 16px;
+
+        .github-logo:hover {
+            opacity: 1;
         }
+
+        /* Search Bar Styling */
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            width: 200px;
+            background-color: #333;
+            color: white;
+        }
+
+        .search-bar input:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
     </style>
 </head>
 <body>
@@ -105,15 +184,12 @@
         <div class="separator"></div>
         <a href="#products" class="menu-item" onclick="showSection('productsSection')">Products</a>
         <a href="#productStock" class="menu-item" onclick="showSection('stockSection')">Product Stock</a>
-        <a href="#logout" class="menu-item">Logout</a>
+        <a href="#sales" class="menu-item" onclick="showSection('salesSection')">Sales</a>
+        <a href="#logout" class="menu-item" onclick="logout()">Logout</a>
     </div>
 
     <div class="main" id="productsSection" style="display: block;">
         <h1>Stock Management</h1>
-        <div class="stock-summary" id="stockSummary">
-            <strong>Total Incoming Stock:</strong> <span id="totalIncoming">0</span><br>
-            <strong>Total Outgoing Stock:</strong> <span id="totalOutgoing">0</span>
-        </div>
         <div class="add-product">
             <div>
                 <input type="text" id="productName" placeholder="Product Name" required>
@@ -133,7 +209,7 @@
                     <th>Date</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Total</th>
+                    <th>Total Value</th>
                     <th>Notes</th>
                     <th>Action</th>
                 </tr>
@@ -166,6 +242,10 @@
             <button onclick="addOutgoingStock()">Add Outgoing Stock</button>
         </div>
 
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search Products" onkeyup="filterStockData()">
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -180,17 +260,47 @@
         </table>
     </div>
 
+    <!-- Sales Section -->
+    <div class="main" id="salesSection">
+        <h1>Sales Management</h1>
+        
+        <div class="add-product">
+            <h3>Record Sale</h3>
+            <div>
+                <input type="text" id="saleProductName" placeholder="Product Name" required>
+                <input type="number" id="saleQuantity" placeholder="Quantity Sold" required min="1">
+                <input type="number" id="salePrice" placeholder="Sale Price" required min="0.01" step="0.01">
+                <input type="text" id="saleNote" placeholder="Notes">
+            </div>
+            <button onclick="addSale()">Record Sale</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity Sold</th>
+                    <th>Sale Price</th>
+                    <th>Total Sale</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="salesTableBody">
+            </tbody>
+        </table>
+    </div>
+
     <a href="https://github.com/your-username" target="_blank">
         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="github-logo" alt="GitHub Logo">
     </a>
 
     <script>
         const stockData = JSON.parse(localStorage.getItem('stockData')) || {};
-        let totalIncomingStock = parseInt(localStorage.getItem('totalIncomingStock')) || 0;
-        let totalOutgoingStock = parseInt(localStorage.getItem('totalOutgoingStock')) || 0;
+        const salesData = JSON.parse(localStorage.getItem('salesData')) || [];
 
-        updateStockSummary();
         renderStockTable();
+        renderSalesTable();
 
         function toggleMenu() {
             const menuItems = document.querySelectorAll('.menu-item');
@@ -206,6 +316,8 @@
             });
             document.getElementById(sectionId).style.display = 'block';
         }
+
+        // Stock Management Functions
 
         function addProduct() {
             const productName = document.getElementById('productName').value;
@@ -229,7 +341,6 @@
 
                 // Clear input fields
                 clearProductFields();
-                updateStockSummary();
             } else {
                 alert("Please fill in all required fields with valid values.");
             }
@@ -248,15 +359,12 @@
 
                 // Update stock data
                 stockData[productName] = (stockData[productName] || 0) + quantity;
-                totalIncomingStock += quantity;
 
                 // Save to local storage
                 localStorage.setItem('stockData', JSON.stringify(stockData));
-                localStorage.setItem('totalIncomingStock', totalIncomingStock);
 
                 // Clear input fields
                 clearIncomingFields();
-                updateStockSummary();
             } else {
                 alert("Please fill in all required fields with valid values.");
             }
@@ -279,39 +387,65 @@
 
                 // Update stock data
                 stockData[productName] -= quantity;
-                totalOutgoingStock += quantity;
 
                 // Save to local storage
                 localStorage.setItem('stockData', JSON.stringify(stockData));
-                localStorage.setItem('totalOutgoingStock', totalOutgoingStock);
 
                 // Clear input fields
                 clearOutgoingFields();
-                updateStockSummary();
             } else {
                 alert("Please fill in all required fields with valid values.");
             }
         }
 
-        function removeProduct(button) {
-            const row = button.parentNode.parentNode;
-            const productName = row.cells[0].textContent;
-            const quantity = parseInt(row.cells[2].textContent);
-            row.parentNode.removeChild(row);
+        // Sales Management Functions
 
-            // Update stock data
-            if (stockData[productName] !== undefined) {
-                stockData[productName] -= quantity;
-                if (stockData[productName] <= 0) {
-                    delete stockData[productName];
-                }
+        function addSale() {
+            const productName = document.getElementById('saleProductName').value;
+            const saleQuantity = parseInt(document.getElementById('saleQuantity').value);
+            const salePrice = parseFloat(document.getElementById('salePrice').value);
+            const saleNote = document.getElementById('saleNote').value;
+
+            if (productName && saleQuantity > 0 && salePrice > 0) {
+                const totalSale = saleQuantity * salePrice;
+                const saleRecord = {
+                    product: productName,
+                    quantity: saleQuantity,
+                    price: salePrice,
+                    total: totalSale,
+                    notes: saleNote
+                };
+
+                // Add sale record to salesData array
+                salesData.push(saleRecord);
+
+                // Save to local storage
+                localStorage.setItem('salesData', JSON.stringify(salesData));
+
+                // Add to sales table
+                const salesTableBody = document.getElementById('salesTableBody');
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${productName}</td><td>${saleQuantity}</td><td>${salePrice.toFixed(2)}</td><td>${totalSale.toFixed(2)}</td><td>${saleNote}</td>`;
+                salesTableBody.appendChild(row);
+
+                // Clear input fields
+                clearSaleFields();
+            } else {
+                alert("Please fill in all required fields with valid values.");
             }
-
-            // Save to local storage
-            localStorage.setItem('stockData', JSON.stringify(stockData));
-            updateStockSummary();
         }
 
+        function renderSalesTable() {
+            const salesTableBody = document.getElementById('salesTableBody');
+            salesTableBody.innerHTML = ''; // Clear existing rows
+            salesData.forEach(sale => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${sale.product}</td><td>${sale.quantity}</td><td>${sale.price.toFixed(2)}</td><td>${sale.total.toFixed(2)}</td><td>${sale.notes}</td>`;
+                salesTableBody.appendChild(row);
+            });
+        }
+
+        // Utility Functions
         function clearProductFields() {
             document.getElementById('productName').value = '';
             document.getElementById('productDate').value = '';
@@ -332,9 +466,11 @@
             document.getElementById('outgoingNote').value = '';
         }
 
-        function updateStockSummary() {
-            document.getElementById('totalIncoming').textContent = totalIncomingStock;
-            document.getElementById('totalOutgoing').textContent = totalOutgoingStock;
+        function clearSaleFields() {
+            document.getElementById('saleProductName').value = '';
+            document.getElementById('saleQuantity').value = '';
+            document.getElementById('salePrice').value = '';
+            document.getElementById('saleNote').value = '';
         }
 
         function renderStockTable() {
@@ -343,12 +479,31 @@
             for (const product in stockData) {
                 if (stockData[product] > 0) {
                     const row = document.createElement('tr');
-                    const total = stockData[product] * (parseFloat(document.getElementById('productPrice').value) || 0); // Replace this with the correct price if available
-                    row.innerHTML = `<td>${product}</td><td>-</td><td>${stockData[product]}</td><td>${(parseFloat(document.getElementById('productPrice').value) || 0).toFixed(2)}</td><td>${total.toFixed(2)}</td><td>-</td><td><button onclick="removeProduct(this)">Remove</button></td>`;
+                    row.innerHTML = `<td>${product}</td><td>-</td><td>${stockData[product]}</td><td>-</td><td>-</td><td>-</td><td><button onclick="removeProduct(this)">Remove</button></td>`;
                     stockTableBody.appendChild(row);
                 }
             }
         }
+
+        function removeProduct(button) {
+            const row = button.parentNode.parentNode;
+            const productName = row.cells[0].textContent;
+            const quantity = parseInt(row.cells[2].textContent);
+            row.parentNode.removeChild(row);
+
+            // Update stock data
+            if (stockData[productName] !== undefined) {
+                stockData[productName] -= quantity;
+                if (stockData[productName] <= 0) {
+                    delete stockData[productName];
+                }
+            }
+
+            // Save to local storage
+            localStorage.setItem('stockData', JSON.stringify(stockData));
+        }
+        
+
     </script>
 </body>
 </html>
